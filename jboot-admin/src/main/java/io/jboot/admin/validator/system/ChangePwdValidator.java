@@ -15,11 +15,11 @@ public class ChangePwdValidator extends JsonValidator {
 
     @Override
     protected void validate(Controller c) {
-        String pwd =  c.getPara("sysUser.pwd");
+        String pwd =  c.getPara("user.pwd");
         String newPwd =  c.getPara("newPwd");
         String rePwd =  c.getPara("rePwd");
 
-        validateRequiredString("sysUser.pwd", "旧密码不能为空");
+        validateRequiredString("user.pwd", "旧密码不能为空");
         validateRequiredString("newPwd", "新密码不能为空");
         validateRequiredString("rePwd", "确认密码不能为空");
 

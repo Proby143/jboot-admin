@@ -6,8 +6,8 @@ import com.jfinal.template.Env;
 import com.jfinal.template.io.Writer;
 import com.jfinal.template.stat.ParseException;
 import com.jfinal.template.stat.Scope;
-import io.jboot.admin.service.api.DataService;
-import io.jboot.admin.service.entity.model.Data;
+import io.jboot.admin.service.api.SysDataService;
+import io.jboot.admin.service.entity.model.SysData;
 import io.jboot.core.rpc.annotation.JbootrpcService;
 import io.jboot.web.directive.annotation.JFinalDirective;
 import io.jboot.web.directive.base.JbootDirectiveBase;
@@ -21,7 +21,7 @@ import java.util.List;
 public class OptionDirective extends JbootDirectiveBase {
 
     @JbootrpcService
-    private DataService dataApi;
+    private SysDataService dataApi;
 
     private String typeCode;
     private String value;
@@ -42,8 +42,8 @@ public class OptionDirective extends JbootDirectiveBase {
             value = getParam(1, "", scope);
         }
 
-        List<Data> list = dataApi.getListByTypeOnUse(typeCode);
-        for (Data data : list) {
+        List<SysData> list = dataApi.getListByTypeOnUse(typeCode);
+        for (SysData data : list) {
             if (value != null && data.getCode().equals(value)) {
                 write(writer, "<option selected value=\"" + data.getCode()  + "\">" + data.getCodeDesc() + "</option>");
             } else {

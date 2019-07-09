@@ -8,10 +8,10 @@ import io.jboot.admin.base.exception.BusinessException;
 import io.jboot.admin.base.interceptor.NotNullPara;
 import io.jboot.admin.base.rest.datatable.DataTable;
 import io.jboot.admin.base.web.base.BaseController;
-import io.jboot.admin.service.api.RoleService;
-import io.jboot.admin.service.api.UserService;
-import io.jboot.admin.service.entity.model.Role;
-import io.jboot.admin.service.entity.model.User;
+import io.jboot.admin.service.api.SysRoleService;
+import io.jboot.admin.service.api.SysUserService;
+import io.jboot.admin.service.entity.model.SysRole;
+import io.jboot.admin.service.entity.model.SysUser;
 import io.jboot.admin.service.entity.status.system.UserStatus;
 import io.jboot.admin.support.auth.AuthUtils;
 import io.jboot.admin.validator.system.ChangePwdValidator;
@@ -32,10 +32,10 @@ import java.util.List;
 public class UserController extends BaseController {
 
     @JbootrpcService
-    private UserService userService;
+    private SysUserService userService;
 
     @JbootrpcService
-    private RoleService roleService;
+    private SysRoleService roleService;
 
     /**
      * index
@@ -51,19 +51,19 @@ public class UserController extends BaseController {
         int pageNumber = getParaToInt("pageNumber", 1);
         int pageSize = getParaToInt("pageSize", 30);
 
-        User sysUser = new User();
+        SysUser sysUser = new SysUser();
         sysUser.setName(getPara("name"));
         sysUser.setPhone(getPara("phone"));
 
-        Page<User> userPage = userService.findPage(sysUser, pageNumber, pageSize);
-        renderJson(new DataTable<User>(userPage));
+        Page<SysUser> userPage = userService.findPage(sysUser, pageNumber, pageSize);
+        renderJson(new DataTable<SysUser>(userPage));
     }
 
     /**
      * add
      */
     public void add() {
-        List<Role> roleList = roleService.findByStatusUsed();
+        List<SysRole> roleList = roleService.findByStatusUsed();
         setAttr("roleList", roleList).render("add.html");
     }
 
@@ -71,7 +71,7 @@ public class UserController extends BaseController {
      * 保存提交
      */
     public void postAdd() {
-        User sysUser = getBean(User.class, "user");
+        SysUser sysUser = getBean(SysUser.class, "user");
         Long[] roles = getParaValuesToLong("userRole");
 
         if (userService.hasUser(sysUser.getName())) {
@@ -92,10 +92,10 @@ public class UserController extends BaseController {
     @NotNullPara({"id"})
     public void update() {
         Long id = getParaToLong("id");
-        User sysUser = userService.findById(id);
+        SysUser sysUser = userService.findById(id);
 
-        List<Role> roleList = roleService.findByStatusUsed();
-        List<Role> sysRoleList = roleService.findByUserName(sysUser.getName());
+        List<SysRole> roleList = roleService.findByStatusUsed();
+        List<SysRole> sysRoleList = roleService.findByUserName(sysUser.getName());
 
         setAttr("user", sysUser).setAttr("roleList", roleList).setAttr("userRoleList", sysRoleList).render("update.html");
     }
@@ -104,10 +104,10 @@ public class UserController extends BaseController {
      * 修改提交
      */
     public void postUpdate() {
-        User sysUser = getBean(User.class, "user");
+        SysUser sysUser = getBean(SysUser.class, "user");
         Long[] roles = getParaValuesToLong("userRole");
 
-        User _sysUser = userService.findById(sysUser.getId());
+        SysUser _sysUser = userService.findById(sysUser.getId());
         if (_sysUser == null) {
             throw new BusinessException("用户不存在");
         }
@@ -140,7 +140,7 @@ public class UserController extends BaseController {
     public void use() {
         Long id = getParaToLong("id");
 
-        User sysUser = userService.findById(id);
+        SysUser sysUser = userService.findById(id);
         if (sysUser == null) {
             throw new BusinessException("用户不存在");
         }
@@ -163,7 +163,7 @@ public class UserController extends BaseController {
     public void unuse() {
         Long id = getParaToLong("id");
 
-        User sysUser = userService.findById(id);
+        SysUser sysUser = userService.findById(id);
         if (sysUser == null) {
             throw new BusinessException("用户不存在");
         }
@@ -183,7 +183,7 @@ public class UserController extends BaseController {
      * 个人资料
      */
     public void profile() {
-        User sysUser = userService.findById(AuthUtils.getLoginUser().getId());
+        SysUser sysUser = userService.findById(AuthUtils.getLoginUser().getId());
         setAttr("user", sysUser).render("profile.html");
     }
 
@@ -191,7 +191,7 @@ public class UserController extends BaseController {
      * 个人资料修改提交
      */
     public void postProfile() {
-        User sysUser = getBean(User.class, "user");
+        SysUser sysUser = getBean(SysUser.class, "user");
         if (!sysUser.getId().equals(AuthUtils.getLoginUser().getId())) {
             throw new BusinessException("无权操作");
         }
@@ -211,7 +211,7 @@ public class UserController extends BaseController {
      * 修改密码
      */
     public void changepwd() {
-        User sysUser = AuthUtils.getLoginUser();
+        SysUser sysUser = AuthUtils.getLoginUser();
         setAttr("user", sysUser).render("changepwd.html");
     }
 
@@ -220,7 +220,7 @@ public class UserController extends BaseController {
      */
     @Before( {POST.class, ChangePwdValidator.class} )
     public void postChangepwd() {
-        User sysUser = getBean(User.class, "user");
+        SysUser sysUser = getBean(SysUser.class, "user");
         if (!sysUser.getId().equals(AuthUtils.getLoginUser().getId())) {
             throw new BusinessException("无权操作");
         }

@@ -7,8 +7,8 @@ import io.jboot.admin.base.interceptor.NotNullPara;
 import io.jboot.admin.base.plugin.shiro.ShiroCacheUtils;
 import io.jboot.admin.base.rest.datatable.DataTable;
 import io.jboot.admin.base.web.base.BaseController;
-import io.jboot.admin.service.api.RoleService;
-import io.jboot.admin.service.entity.model.Role;
+import io.jboot.admin.service.api.SysRoleService;
+import io.jboot.admin.service.entity.model.SysRole;
 import io.jboot.admin.service.entity.status.system.RoleStatus;
 import io.jboot.admin.support.auth.AuthUtils;
 import io.jboot.core.rpc.annotation.JbootrpcService;
@@ -25,7 +25,7 @@ import java.util.Date;
 public class RoleController extends BaseController {
 
     @JbootrpcService
-    private RoleService roleService;
+    private SysRoleService roleService;
 
     /**
      * index
@@ -41,11 +41,11 @@ public class RoleController extends BaseController {
         int pageNumber = getParaToInt("pageNumber", 1);
         int pageSize = getParaToInt("pageSize", 30);
 
-        Role sysRole = new Role();
+        SysRole sysRole = new SysRole();
         sysRole.setName(getPara("name"));
 
-        Page<Role> rolePage = roleService.findPage(sysRole, pageNumber, pageSize);
-        renderJson(new DataTable<Role>(rolePage));
+        Page<SysRole> rolePage = roleService.findPage(sysRole, pageNumber, pageSize);
+        renderJson(new DataTable<SysRole>(rolePage));
     }
 
     /**
@@ -59,7 +59,7 @@ public class RoleController extends BaseController {
      * 保存提交
      */
     public void postAdd() {
-        Role sysRole = getBean(Role.class, "role");
+        SysRole sysRole = getBean(SysRole.class, "role");
 
         sysRole.setLastUpdAcct(AuthUtils.getLoginUser().getName());
         sysRole.setStatus(RoleStatus.USED);
@@ -80,7 +80,7 @@ public class RoleController extends BaseController {
     public void update() {
         Long id = getParaToLong("id");
 
-        Role sysRole = roleService.findById(id);
+        SysRole sysRole = roleService.findById(id);
         setAttr("role", sysRole).render("update.html");
     }
 
@@ -88,7 +88,7 @@ public class RoleController extends BaseController {
      * 修改提交
      */
     public void postUpdate() {
-        Role sysRole = getBean(Role.class, "role");
+        SysRole sysRole = getBean(SysRole.class, "role");
 
         sysRole.setLastUpdAcct(AuthUtils.getLoginUser().getName());
         sysRole.setLastUpdTime(new Date());
@@ -119,7 +119,7 @@ public class RoleController extends BaseController {
      */
     @NotNullPara({"id"})
     public void auth() {
-        Role sysRole = roleService.findById(getParaToLong("id"));
+        SysRole sysRole = roleService.findById(getParaToLong("id"));
         setAttr("role", sysRole).render("auth.html");
     }
 

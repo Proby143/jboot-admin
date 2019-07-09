@@ -2,7 +2,7 @@ package io.jboot.admin.service.api;
 
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
-import io.jboot.admin.service.entity.model.Log;
+import io.jboot.admin.service.entity.model.SysLog;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public interface LogService  {
      * @param pageSize
      * @return
      */
-    public Page<Log> findPage(Log log, int pageNumber, int pageSize);
+    public Page<SysLog> findPage(SysLog log, int pageNumber, int pageSize);
 
     /**
      * 根据ID查找model
@@ -23,7 +23,7 @@ public interface LogService  {
      * @param id
      * @return
      */
-    public Log findById(Object id);
+    public SysLog findById(Object id);
 
 
     /**
@@ -40,7 +40,7 @@ public interface LogService  {
      * @param model
      * @return
      */
-    public boolean delete(Log model);
+    public boolean delete(SysLog model);
 
 
     /**
@@ -49,7 +49,7 @@ public interface LogService  {
      * @param model
      * @return
      */
-    public boolean save(Log model);
+    public boolean save(SysLog model);
 
     /**
      * 保存或更新
@@ -57,7 +57,7 @@ public interface LogService  {
      * @param model
      * @return
      */
-    public boolean saveOrUpdate(Log model);
+    public boolean saveOrUpdate(SysLog model);
 
     /**
      * 更新 model
@@ -65,7 +65,7 @@ public interface LogService  {
      * @param model
      * @return
      */
-    public boolean update(Log model);
+    public boolean update(SysLog model);
 
 
     public void join(Page<? extends Model> page, String joinOnField);

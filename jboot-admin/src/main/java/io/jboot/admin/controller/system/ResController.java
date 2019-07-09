@@ -10,18 +10,14 @@ import io.jboot.admin.base.exception.BusinessException;
 import io.jboot.admin.base.interceptor.NotNullPara;
 import io.jboot.admin.base.rest.datatable.DataTable;
 import io.jboot.admin.base.web.base.BaseController;
-import io.jboot.admin.service.api.ResService;
-import io.jboot.admin.service.entity.model.Res;
+import io.jboot.admin.service.api.SysResService;
+import io.jboot.admin.service.entity.model.SysRes;
 import io.jboot.admin.service.entity.status.system.ResStatus;
 import io.jboot.admin.support.auth.AuthUtils;
 import io.jboot.admin.validator.system.ResValidator;
-import io.jboot.component.metric.annotation.EnableMetricCounter;
-import io.jboot.component.swagger.ParamType;
 import io.jboot.core.rpc.annotation.JbootrpcService;
 import io.jboot.web.controller.annotation.RequestMapping;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 import java.util.*;
@@ -37,7 +33,7 @@ import java.util.*;
 public class ResController extends BaseController {
 
     @JbootrpcService
-    private ResService resService;
+    private SysResService resService;
 
     /**
      * index
@@ -53,7 +49,7 @@ public class ResController extends BaseController {
     public void add() {
         Long pid = getParaToLong("pid");
 
-        Res pRes = new Res();
+        SysRes pRes = new SysRes();
         if (pid == null || pid == 0) {
             pRes.setId(0L);
             pRes.setName("根节点");
@@ -70,10 +66,10 @@ public class ResController extends BaseController {
     @Before({POST.class, ResValidator.class})
     public void postAdd() {
         Long pid = getParaToLong("pid");
-        Res sysRes = getBean(Res.class, "res");
+        SysRes sysRes = getBean(SysRes.class, "res");
 
         if (pid != 0) {
-            Res pRes = resService.findById(pid);
+            SysRes pRes = resService.findById(pid);
             if (pRes == null) {
                 throw new BusinessException("上级资源不存在");
             } else {
@@ -107,8 +103,8 @@ public class ResController extends BaseController {
     public void update() {
         Long id = getParaToLong("id");
 
-        Res sysRes = resService.findById(id);
-        Res pRes = new Res();
+        SysRes sysRes = resService.findById(id);
+        SysRes pRes = new SysRes();
         if (sysRes.getPid() == null || sysRes.getPid() == 0) {
             pRes.setId(0L);
             pRes.setName("根节点");
@@ -125,7 +121,7 @@ public class ResController extends BaseController {
     @Before({POST.class, ResValidator.class})
     public void postUpdate() {
         Long pid = getParaToLong("pid");
-        Res sysRes = getBean(Res.class, "res");
+        SysRes sysRes = getBean(SysRes.class, "res");
 
         if (StrKit.isBlank(sysRes.getIconCls())) {
             sysRes.setIconCls("");
@@ -168,7 +164,7 @@ public class ResController extends BaseController {
     public void use() {
         Long id = getParaToLong("id");
 
-        Res sysRes = resService.findById(id);
+        SysRes sysRes = resService.findById(id);
         if (sysRes == null) {
             throw new BusinessException("编号为" + id + "的资源不存在");
         }
@@ -190,7 +186,7 @@ public class ResController extends BaseController {
     public void unuse() {
         Long id = getParaToLong("id");
 
-        Res sysRes = resService.findById(id);
+        SysRes sysRes = resService.findById(id);
         if (sysRes == null) {
             throw new BusinessException("编号为" + id + "的资源不存在");
         }
@@ -229,13 +225,13 @@ public class ResController extends BaseController {
         int pageNumber = getParaToInt("pageNumber", 1);
         int pageSize = getParaToInt("pageSize", 30);
 
-        Res sysRes = new Res();
+        SysRes sysRes = new SysRes();
         sysRes.setPid(getParaToLong("pid", 0L));
         sysRes.setName(getPara("name"));
         sysRes.setUrl(getPara("url"));
 
-        Page<Res> resPage = resService.findPage(sysRes, pageNumber, pageSize);
-        renderJson(new DataTable<Res>(resPage));
+        Page<SysRes> resPage = resService.findPage(sysRes, pageNumber, pageSize);
+        renderJson(new DataTable<SysRes>(resPage));
     }
 
     /**
@@ -243,10 +239,10 @@ public class ResController extends BaseController {
      */
     @ApiOperation(value = "顶部菜单", httpMethod = "GET", notes = "menuTop")
     public void menuTop() {
-        List<Res> list = resService.findTopMenuByUserName(AuthUtils.getLoginUser().getName());
+        List<SysRes> list = resService.findTopMenuByUserName(AuthUtils.getLoginUser().getName());
 
         List<MenuItem> listL1 = null;
-        for (Res l1 : list) {
+        for (SysRes l1 : list) {
             if (listL1 == null) {
                 listL1 = new LinkedList<MenuItem>();
             }
@@ -266,17 +262,17 @@ public class ResController extends BaseController {
     @NotNullPara({"pid"})
     public void menuLeft() {
         Long pid = getParaToLong("pid");
-        List<Res> list = resService.findLeftMenuByUserNameAndPid(AuthUtils.getLoginUser().getName(), pid);
+        List<SysRes> list = resService.findLeftMenuByUserNameAndPid(AuthUtils.getLoginUser().getName(), pid);
 
         List<MenuItem> listL1 = null;
-        for (Res l1 : list) {
+        for (SysRes l1 : list) {
             if (l1.getLevel() == 2) {
                 if (listL1 == null) {
                     listL1 = new LinkedList<MenuItem>();
                 }
                 MenuItem l1Item = new MenuItem(l1.getName(), l1.getIconCls(), l1.getUrl(), l1.getId());
                 List<MenuItem> subset = null;
-                for (Res l2 : list) {
+                for (SysRes l2 : list) {
                     if (l2.getLevel() == 3 && l2.getPid().equals(l1.getId())) {
                         if (subset == null) {
                             subset = new LinkedList<MenuItem>();

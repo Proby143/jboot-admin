@@ -2,6 +2,7 @@ package io.jboot.admin.support.auth;
 
 import io.jboot.admin.base.common.Consts;
 import io.jboot.admin.base.plugin.shiro.ShiroUtils;
+import io.jboot.admin.service.entity.model.SysUser;
 import io.jboot.admin.service.entity.model.User;
 import org.apache.shiro.SecurityUtils;
 
@@ -22,10 +23,10 @@ public class AuthUtils {
      * 获取平台登录用户
      * @return
      */
-    public static User getLoginUser() {
-        User user = new User();
+    public static SysUser getLoginUser() {
+        SysUser user = new SysUser();
         if (ShiroUtils.isAuthenticated()) {
-            user = (User) SecurityUtils.getSubject().getSession().getAttribute(Consts.SESSION_USER);
+            user = (SysUser) SecurityUtils.getSubject().getSession().getAttribute(Consts.SESSION_USER);
         }
         return user;
     }

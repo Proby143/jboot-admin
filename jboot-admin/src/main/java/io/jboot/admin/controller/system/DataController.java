@@ -6,8 +6,8 @@ import io.jboot.admin.base.exception.BusinessException;
 import io.jboot.admin.base.interceptor.NotNullPara;
 import io.jboot.admin.base.rest.datatable.DataTable;
 import io.jboot.admin.base.web.base.BaseController;
-import io.jboot.admin.service.api.DataService;
-import io.jboot.admin.service.entity.model.Data;
+import io.jboot.admin.service.api.SysDataService;
+import io.jboot.admin.service.entity.model.SysData;
 import io.jboot.admin.service.entity.status.system.DataStatus;
 import io.jboot.admin.support.auth.AuthUtils;
 import io.jboot.core.rpc.annotation.JbootrpcService;
@@ -24,7 +24,7 @@ import java.util.Date;
 public class DataController extends BaseController {
 
     @JbootrpcService
-    private DataService dataService;
+    private SysDataService dataService;
 
     /**
      * index
@@ -40,12 +40,12 @@ public class DataController extends BaseController {
         int pageNumber = getParaToInt("pageNumber", 1);
         int pageSize = getParaToInt("pageSize", 30);
 
-        Data data = new Data();
+        SysData data = new SysData();
         data.setType(getPara("type"));
         data.setTypeDesc(getPara("typeDesc"));
 
-        Page<Data> dataPage = dataService.findPage(data, pageNumber, pageSize);
-        renderJson(new DataTable<Data>(dataPage));
+        Page<SysData> dataPage = dataService.findPage(data, pageNumber, pageSize);
+        renderJson(new DataTable<SysData>(dataPage));
     }
 
     /**
@@ -59,7 +59,7 @@ public class DataController extends BaseController {
      * 保存提交
      */
     public void postAdd() {
-        Data data = getBean(Data.class, "data");
+        SysData data = getBean(SysData.class, "data");
 
         data.setLastUpdAcct(AuthUtils.getLoginUser().getName());
         data.setStatus(DataStatus.USED);
@@ -80,7 +80,7 @@ public class DataController extends BaseController {
     @NotNullPara({"id"})
     public void update() {
         Long id = getParaToLong("id");
-        Data data = dataService.findById(id);
+        SysData data = dataService.findById(id);
 
         setAttr("data", data).render("update.html");
     }
@@ -89,7 +89,7 @@ public class DataController extends BaseController {
      * 修改提交
      */
     public void postUpdate() {
-        Data data = getBean(Data.class, "data");
+        SysData data = getBean(SysData.class, "data");
 
         if (dataService.findById(data.getId()) == null) {
             throw new BusinessException("数据不存在");
@@ -127,7 +127,7 @@ public class DataController extends BaseController {
     public void use() {
         Long id = getParaToLong("id");
 
-        Data data = dataService.findById(id);
+        SysData data = dataService.findById(id);
         if (data == null) {
             throw new BusinessException("编号为" + id + "的数据不存在");
         }
@@ -148,7 +148,7 @@ public class DataController extends BaseController {
     @NotNullPara({"id"})
     public void unuse() {
         Long id = getParaToLong("id");
-        Data data = dataService.findById(id);
+        SysData data = dataService.findById(id);
         if (data == null) {
             throw new BusinessException("编号为" + id + "的数据不存在");
         }

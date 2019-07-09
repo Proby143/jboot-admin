@@ -5,8 +5,8 @@ import com.jfinal.template.Env;
 import com.jfinal.template.io.Writer;
 import com.jfinal.template.stat.ParseException;
 import com.jfinal.template.stat.Scope;
-import io.jboot.admin.service.api.DataService;
-import io.jboot.admin.service.entity.model.Data;
+import io.jboot.admin.service.api.SysDataService;
+import io.jboot.admin.service.entity.model.SysData;
 import io.jboot.core.rpc.annotation.JbootrpcService;
 import io.jboot.web.directive.annotation.JFinalDirective;
 import io.jboot.web.directive.base.JbootDirectiveBase;
@@ -20,7 +20,7 @@ import java.util.List;
 public class DataDirective extends JbootDirectiveBase {
 
     @JbootrpcService
-    private DataService dataApi;
+    private SysDataService dataApi;
 
     /** 数据字典类型编码 */
     private String typeCode;
@@ -44,12 +44,12 @@ public class DataDirective extends JbootDirectiveBase {
 
 
 
-        List<Data> list = dataApi.getListByTypeOnUse(typeCode);
+        List<SysData> list = dataApi.getListByTypeOnUse(typeCode);
 
         if (StrKit.isBlank(code)) {
             write(writer, "");
         } else {
-            for (Data data : list) {
+            for (SysData data : list) {
                 if(code.equals(data.getCode())) {
                     write(writer,data.getCodeDesc());
                 }

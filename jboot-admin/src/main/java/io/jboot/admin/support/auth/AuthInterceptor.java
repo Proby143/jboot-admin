@@ -3,8 +3,8 @@ package io.jboot.admin.support.auth;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import io.jboot.Jboot;
-import io.jboot.admin.service.api.ResService;
-import io.jboot.admin.service.entity.model.Res;
+import io.jboot.admin.service.api.SysResService;
+import io.jboot.admin.service.entity.model.SysRes;
 import io.jboot.admin.service.entity.status.system.ResStatus;
 import org.apache.shiro.SecurityUtils;
 
@@ -32,10 +32,10 @@ public class AuthInterceptor implements Interceptor {
     }
 
     public static void init() {
-        ResService sysResApi = Jboot.service(ResService.class);
-        List<Res> sysResList = sysResApi.findByStatus(ResStatus.USED);
+        SysResService sysResApi = Jboot.service(SysResService.class);
+        List<SysRes> sysResList = sysResApi.findByStatus(ResStatus.USED);
         List<String> list = new ArrayList<String>();
-        for (Res res : sysResList) {
+        for (SysRes res : sysResList) {
             list.add(res.getUrl());
         }
         urls = list;

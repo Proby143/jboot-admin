@@ -3,8 +3,8 @@ package io.jboot.admin.controller.system;
 import com.jfinal.plugin.activerecord.Page;
 import io.jboot.admin.base.rest.datatable.DataTable;
 import io.jboot.admin.base.web.base.BaseController;
-import io.jboot.admin.service.api.LogService;
-import io.jboot.admin.service.entity.model.Log;
+import io.jboot.admin.service.api.SysLogService;
+import io.jboot.admin.service.entity.model.SysLog;
 import io.jboot.core.rpc.annotation.JbootrpcService;
 import io.jboot.web.controller.annotation.RequestMapping;
 
@@ -17,7 +17,7 @@ import io.jboot.web.controller.annotation.RequestMapping;
 public class LogController extends BaseController {
     
     @JbootrpcService
-    private LogService logService;
+    private SysLogService logService;
 
     /**
      * index
@@ -33,13 +33,13 @@ public class LogController extends BaseController {
         int pageNumber = getParaToInt("pageNumber", 1);
         int pageSize = getParaToInt("pageSize", 30);
 
-        Log log = new Log();
+        SysLog log = new SysLog();
         log.setIp(getPara("ip"));
         log.setUrl(getPara("url"));
         log.setLastUpdAcct(getPara("userName"));
 
-        Page<Log> logPage = logService.findPage(log, pageNumber, pageSize);
-        renderJson(new DataTable<Log>(logPage));
+        Page<SysLog> logPage = logService.findPage(log, pageNumber, pageSize);
+        renderJson(new DataTable<SysLog>(logPage));
     }
     
 }

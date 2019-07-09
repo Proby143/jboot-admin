@@ -6,7 +6,9 @@ import io.jboot.admin.base.common.Consts;
 import io.jboot.admin.base.common.RestResult;
 import io.jboot.admin.base.plugin.shiro.MuitiLoginToken;
 import io.jboot.admin.base.web.base.BaseController;
+import io.jboot.admin.service.api.SysUserService;
 import io.jboot.admin.service.api.UserService;
+import io.jboot.admin.service.entity.model.SysUser;
 import io.jboot.admin.service.entity.model.User;
 import io.jboot.admin.validator.LoginValidator;
 import io.jboot.core.rpc.annotation.JbootrpcService;
@@ -27,7 +29,7 @@ import org.apache.shiro.subject.Subject;
 public class MainController extends BaseController {
 
     @JbootrpcService
-    private UserService userService;
+    private SysUserService userService;
 
     public void index() {
         render("index.html");
@@ -61,7 +63,7 @@ public class MainController extends BaseController {
                 token.setRememberMe(false);
                 subject.login(token);
 
-                User u = userService.findByName(loginName);
+                SysUser u = userService.findByName(loginName);
                 subject.getSession(true).setAttribute(Consts.SESSION_USER, u);
             }
             if (getParaToBoolean("rememberMe") != null && getParaToBoolean("rememberMe")) {
