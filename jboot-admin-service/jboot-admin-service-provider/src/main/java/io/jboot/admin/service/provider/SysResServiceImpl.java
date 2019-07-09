@@ -83,7 +83,7 @@ public class SysResServiceImpl extends JbootServiceBase<SysRes> implements SysRe
 
     @Override
     public List<SysRes> findByRoleIdAndStatusUsed(Long id) {
-        SqlPara sp = Db.getSqlPara("system-SysRes.findByRoleIdAndStatusUsed");
+        SqlPara sp = Db.getSqlPara("system-res.findByRoleIdAndStatusUsed");
         sp.addPara(ResStatus.USED);
         sp.addPara(RoleStatus.USED);
         sp.addPara(id);
@@ -97,7 +97,7 @@ public class SysResServiceImpl extends JbootServiceBase<SysRes> implements SysRe
 
     @Override
     public List<SysRes> findByUserNameAndStatusUsed(String name) {
-        SqlPara sp = Db.getSqlPara("system-SysRes.findByUserNameAndStatusUsed");
+        SqlPara sp = Db.getSqlPara("system-res.findByUserNameAndStatusUsed");
         sp.addPara(ResStatus.USED);
         sp.addPara(RoleStatus.USED);
         sp.addPara(name);
@@ -106,7 +106,7 @@ public class SysResServiceImpl extends JbootServiceBase<SysRes> implements SysRe
 
     @Override
     public List<SysRes> findTopMenuByUserName(String name) {
-        SqlPara sp = Db.getSqlPara("system-SysRes.findTopMenuByUserName");
+        SqlPara sp = Db.getSqlPara("system-res.findTopMenuByUserName");
         sp.addPara(ResStatus.USED);
         sp.addPara(RoleStatus.USED);
         sp.addPara(0L);
@@ -116,7 +116,7 @@ public class SysResServiceImpl extends JbootServiceBase<SysRes> implements SysRe
 
     @Override
     public List<SysRes> findLeftMenuByUserNameAndPid(String name, Long pid) {
-        SqlPara sp = Db.getSqlPara("system-SysRes.findLeftMenuByUserNameAndPid");
+        SqlPara sp = Db.getSqlPara("system-res.findLeftMenuByUserNameAndPid");
         sp.addPara(ResStatus.USED);
         sp.addPara(RoleStatus.USED);
         sp.addPara(pid);

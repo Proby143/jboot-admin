@@ -41,7 +41,7 @@ public class SysRoleServiceImpl extends JbootServiceBase<SysRole> implements Sys
 
     @Override
     public List<SysRole> findByUserName(String name) {
-        SqlPara sp = Db.getSqlPara("system-SysRole.findByUserName");
+        SqlPara sp = Db.getSqlPara("system-role.findByUserName");
         sp.addPara(name);
         return DAO.find(sp);
     }

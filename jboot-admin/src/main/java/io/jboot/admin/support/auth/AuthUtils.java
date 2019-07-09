@@ -5,6 +5,8 @@ import io.jboot.admin.base.plugin.shiro.ShiroUtils;
 import io.jboot.admin.service.entity.model.SysUser;
 import io.jboot.admin.service.entity.model.User;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 
 /**
  * 授权认证工具类
@@ -26,6 +28,9 @@ public class AuthUtils {
     public static SysUser getLoginUser() {
         SysUser user = new SysUser();
         if (ShiroUtils.isAuthenticated()) {
+            Subject subject = SecurityUtils.getSubject();
+            Session session = subject.getSession();
+            Object attribute = session.getAttribute(Consts.SESSION_USER);
             user = (SysUser) SecurityUtils.getSubject().getSession().getAttribute(Consts.SESSION_USER);
         }
         return user;
