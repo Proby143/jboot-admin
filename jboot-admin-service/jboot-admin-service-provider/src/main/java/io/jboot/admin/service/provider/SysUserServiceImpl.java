@@ -10,6 +10,7 @@ import io.jboot.admin.service.entity.model.SysUser;
 import io.jboot.admin.service.entity.model.SysUserRole;
 import io.jboot.admin.service.entity.status.system.UserOnlineStatus;
 import io.jboot.aop.annotation.Bean;
+import io.jboot.core.rpc.annotation.JbootrpcService;
 import io.jboot.db.model.Columns;
 import io.jboot.service.JbootServiceBase;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
@@ -24,6 +25,7 @@ import java.util.List;
 
 @Bean
 @Singleton
+@JbootrpcService
 public class SysUserServiceImpl extends JbootServiceBase<SysUser> implements SysUserService {
     @Inject
     private SysUserRoleService userRoleService;

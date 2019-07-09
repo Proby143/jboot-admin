@@ -10,6 +10,7 @@ import io.jboot.admin.service.entity.status.system.RoleStatus;
 import io.jboot.aop.annotation.Bean;
 import io.jboot.admin.service.api.SysResService;
 import io.jboot.admin.service.entity.model.SysRes;
+import io.jboot.core.rpc.annotation.JbootrpcService;
 import io.jboot.db.model.Columns;
 import io.jboot.service.JbootServiceBase;
 
@@ -19,6 +20,7 @@ import java.util.List;
 
 @Bean
 @Singleton
+@JbootrpcService
 public class SysResServiceImpl extends JbootServiceBase<SysRes> implements SysResService {
     @Override
     public Page<SysRes> findPage(SysRes sysRes, int pageNumber, int pageSize) {

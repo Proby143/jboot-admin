@@ -9,6 +9,7 @@ import io.jboot.aop.annotation.Bean;
 import io.jboot.admin.service.api.SysDataService;
 import io.jboot.admin.service.entity.model.SysData;
 import io.jboot.core.cache.annotation.Cacheable;
+import io.jboot.core.rpc.annotation.JbootrpcService;
 import io.jboot.db.model.Columns;
 import io.jboot.service.JbootServiceBase;
 
@@ -19,6 +20,7 @@ import java.util.Map;
 
 @Bean
 @Singleton
+@JbootrpcService
 public class SysDataServiceImpl extends JbootServiceBase<SysData> implements SysDataService {
     @Override
     public Page<SysData> findPage(SysData data, int pageNumber, int pageSize) {

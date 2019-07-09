@@ -11,6 +11,7 @@ import io.jboot.admin.service.entity.model.SysRole;
 import io.jboot.admin.service.entity.model.SysRoleRes;
 import io.jboot.admin.service.entity.status.system.RoleStatus;
 import io.jboot.aop.annotation.Bean;
+import io.jboot.core.rpc.annotation.JbootrpcService;
 import io.jboot.db.model.Columns;
 import io.jboot.service.JbootServiceBase;
 
@@ -22,6 +23,7 @@ import java.util.List;
 
 @Bean
 @Singleton
+@JbootrpcService
 public class SysRoleServiceImpl extends JbootServiceBase<SysRole> implements SysRoleService {
     @Inject
     private SysRoleResService roleResService;

@@ -6,6 +6,7 @@ import io.jboot.admin.service.api.SysLogService;
 import io.jboot.admin.service.api.SysUserService;
 import io.jboot.admin.service.entity.model.SysLog;
 import io.jboot.aop.annotation.Bean;
+import io.jboot.core.rpc.annotation.JbootrpcService;
 import io.jboot.db.model.Columns;
 import io.jboot.service.JbootServiceBase;
 
@@ -14,6 +15,7 @@ import javax.inject.Singleton;
 
 @Bean
 @Singleton
+@JbootrpcService
 public class SysLogServiceImpl extends JbootServiceBase<SysLog> implements SysLogService {
     @Inject
     private SysUserService userService;

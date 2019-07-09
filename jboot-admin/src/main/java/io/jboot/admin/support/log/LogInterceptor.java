@@ -18,9 +18,9 @@ import java.util.Date;
  * @author Rlax
  *
  */
-public class SysLogInterceptor implements Interceptor {
+public class LogInterceptor implements Interceptor {
 
-	private final static com.jfinal.log.Log logger = com.jfinal.log.Log.getLog(SysLogInterceptor.class);
+	private final static com.jfinal.log.Log logger = com.jfinal.log.Log.getLog(LogInterceptor.class);
 
 	@Override
 	public void intercept(Invocation inv) {
