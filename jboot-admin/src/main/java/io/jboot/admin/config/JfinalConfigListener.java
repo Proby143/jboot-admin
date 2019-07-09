@@ -3,13 +3,10 @@ package io.jboot.admin.config;
 import com.google.inject.Binder;
 import com.jfinal.captcha.CaptchaManager;
 import com.jfinal.config.Constants;
-import com.jfinal.config.Interceptors;
 import com.jfinal.config.Routes;
 import com.jfinal.ext.handler.ContextPathHandler;
-import com.jfinal.json.JFinalJsonFactory;
+import com.jfinal.ext.interceptor.LogInterceptor;
 import com.jfinal.template.Engine;
-import com.jfinal.weixin.sdk.api.ApiConfig;
-import com.jfinal.weixin.sdk.api.ApiConfigKit;
 import io.jboot.Jboot;
 import io.jboot.admin.base.captcha.CaptchaCache;
 import io.jboot.admin.base.common.AppInfo;
@@ -17,14 +14,13 @@ import io.jboot.admin.base.interceptor.BusinessExceptionInterceptor;
 import io.jboot.admin.base.interceptor.NotNullParaInterceptor;
 import io.jboot.admin.base.web.render.AppRenderFactory;
 import io.jboot.admin.support.auth.AuthInterceptor;
-import io.jboot.admin.support.log.LogInterceptor;
+import io.jboot.admin.support.log.SysLogInterceptor;
 import io.jboot.aop.jfinal.JfinalHandlers;
 import io.jboot.aop.jfinal.JfinalPlugins;
 import io.jboot.server.ContextListeners;
 import io.jboot.server.JbootServer;
 import io.jboot.server.Servlets;
 import io.jboot.server.listener.JbootAppListenerBase;
-import io.jboot.wechat.JbootWechatConfig;
 
 /**
  * jfinal config
@@ -55,7 +51,7 @@ public class JfinalConfigListener extends JbootAppListenerBase {
     }
 
     @Override
-    public void onInterceptorConfig(Interceptors interceptors) {
+    public void onInterceptorConfig(Intertors interceptors) {
         interceptors.add(new LogInterceptor());
         interceptors.add(new AuthInterceptor());
         interceptors.add(new NotNullParaInterceptor("/template/exception.html"));

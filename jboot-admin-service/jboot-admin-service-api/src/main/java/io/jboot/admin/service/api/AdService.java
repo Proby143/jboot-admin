@@ -2,11 +2,11 @@ package io.jboot.admin.service.api;
 
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
-import io.jboot.admin.service.entity.model.User;
+import io.jboot.admin.service.entity.model.Ad;
 
 import java.util.List;
 
-public interface UserService  {
+public interface AdService  {
 
     /**
      * find model by primary key
@@ -14,15 +14,15 @@ public interface UserService  {
      * @param id
      * @return
      */
-    public User findById(Object id);
+    public Ad findById(Object id);
 
 
     /**
      * find all model
      *
-     * @return all <User
+     * @return all <Ad
      */
-    public List<User> findAll();
+    public List<Ad> findAll();
 
 
     /**
@@ -40,7 +40,7 @@ public interface UserService  {
      * @param model
      * @return
      */
-    public boolean delete(User model);
+    public boolean delete(Ad model);
 
 
     /**
@@ -49,7 +49,7 @@ public interface UserService  {
      * @param model
      * @return
      */
-    public boolean save(User model);
+    public boolean save(Ad model);
 
 
     /**
@@ -58,7 +58,7 @@ public interface UserService  {
      * @param model
      * @return if save or update success
      */
-    public boolean saveOrUpdate(User model);
+    public boolean saveOrUpdate(Ad model);
 
 
     /**
@@ -67,7 +67,7 @@ public interface UserService  {
      * @param model
      * @return
      */
-    public boolean update(User model);
+    public boolean update(Ad model);
 
 
     /**

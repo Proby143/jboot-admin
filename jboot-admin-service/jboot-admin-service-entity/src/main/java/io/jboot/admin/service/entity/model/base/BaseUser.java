@@ -9,108 +9,84 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings("serial")
 public abstract class BaseUser<M extends BaseUser<M>> extends JbootModel<M> implements IBean {
 
-	public void setId(java.lang.Long id) {
-		set("id", id);
+	public void setUserId(java.lang.String userId) {
+		set("user_id", userId);
 	}
 	
-	public java.lang.Long getId() {
-		return getLong("id");
+	public java.lang.String getUserId() {
+		return getStr("user_id");
 	}
 
-	public void setName(java.lang.String name) {
-		set("name", name);
+	public void setUserName(java.lang.String userName) {
+		set("user_name", userName);
 	}
 	
-	public java.lang.String getName() {
-		return getStr("name");
+	public java.lang.String getUserName() {
+		return getStr("user_name");
 	}
 
-	public void setPwd(java.lang.String pwd) {
-		set("pwd", pwd);
+	public void setAge(java.lang.Integer age) {
+		set("age", age);
 	}
 	
-	public java.lang.String getPwd() {
-		return getStr("pwd");
+	public java.lang.Integer getAge() {
+		return getInt("age");
 	}
 
-	public void setStatus(java.lang.String status) {
-		set("status", status);
+	public void setSex(java.lang.String sex) {
+		set("sex", sex);
 	}
 	
-	public java.lang.String getStatus() {
-		return getStr("status");
+	public java.lang.String getSex() {
+		return getStr("sex");
 	}
 
-	public void setIcon(java.lang.String icon) {
-		set("icon", icon);
+	public void setOccupation(java.lang.String occupation) {
+		set("occupation", occupation);
 	}
 	
-	public java.lang.String getIcon() {
-		return getStr("icon");
+	public java.lang.String getOccupation() {
+		return getStr("occupation");
 	}
 
-	public void setEmail(java.lang.String email) {
-		set("email", email);
+	public void setCreatred(java.util.Date creatred) {
+		set("creatred", creatred);
 	}
 	
-	public java.lang.String getEmail() {
-		return getStr("email");
+	public java.util.Date getCreatred() {
+		return get("creatred");
 	}
 
-	public void setCreatedate(java.util.Date createdate) {
-		set("createdate", createdate);
+	public void setUpdated(java.util.Date updated) {
+		set("updated", updated);
 	}
 	
-	public java.util.Date getCreatedate() {
-		return get("createdate");
+	public java.util.Date getUpdated() {
+		return get("updated");
 	}
 
-	public void setPhone(java.lang.String phone) {
-		set("phone", phone);
+	public void setFrontPic(java.lang.String frontPic) {
+		set("front_pic", frontPic);
 	}
 	
-	public java.lang.String getPhone() {
-		return getStr("phone");
+	public java.lang.String getFrontPic() {
+		return getStr("front_pic");
 	}
 
-	public void setSalt2(java.lang.String salt2) {
-		set("salt2", salt2);
+	public void setDesc(java.lang.String desc) {
+		set("desc", desc);
 	}
 	
-	public java.lang.String getSalt2() {
-		return getStr("salt2");
+	public java.lang.String getDesc() {
+		return getStr("desc");
 	}
 
-	public void setOnlineStatus(java.lang.String onlineStatus) {
-		set("onlineStatus", onlineStatus);
+	public void setCity(java.lang.String city) {
+		set("city", city);
 	}
 	
-	public java.lang.String getOnlineStatus() {
-		return getStr("onlineStatus");
-	}
-
-	public void setLastUpdAcct(java.lang.String lastUpdAcct) {
-		set("lastUpdAcct", lastUpdAcct);
-	}
-	
-	public java.lang.String getLastUpdAcct() {
-		return getStr("lastUpdAcct");
-	}
-
-	public void setLastUpdTime(java.util.Date lastUpdTime) {
-		set("lastUpdTime", lastUpdTime);
-	}
-	
-	public java.util.Date getLastUpdTime() {
-		return get("lastUpdTime");
-	}
-
-	public void setNote(java.lang.String note) {
-		set("note", note);
-	}
-	
-	public java.lang.String getNote() {
-		return getStr("note");
+	public java.lang.String getCity() {
+		return getStr("city");
 	}
 
 }

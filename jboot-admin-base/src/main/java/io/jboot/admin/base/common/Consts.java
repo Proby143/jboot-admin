@@ -8,9 +8,9 @@ package io.jboot.admin.base.common;
 public class Consts
 {
 	/** session 用户信息key */
-	public static final String SESSION_USER = "user";
+	public static final String SESSION_USER = "sysUser";
 	/** session 用户角色key */
-	public static final String SESSION_USER_ROLE = "userRole";
+	public static final String SESSION_USER_ROLE = "sysUserRole";
 	public static final String SESSION_EAMIL_USER="email_val";
 	public static final String SESSION_MESSAGE = "_message";
 	/** 短信session值 */
