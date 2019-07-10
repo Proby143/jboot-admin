@@ -1,13 +1,18 @@
 package io.jboot.admin.service.provider;
 
+import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import io.jboot.Jboot;
+import io.jboot.admin.base.exception.BusinessException;
 import io.jboot.admin.base.util.IDUtils;
 import io.jboot.admin.service.api.UserLoginService;
+import io.jboot.admin.service.entity.model.ReadRecord;
 import io.jboot.admin.service.entity.model.UserLogin;
 import io.jboot.aop.annotation.Bean;
 import io.jboot.core.rpc.annotation.JbootrpcService;
+import io.jboot.db.model.Columns;
 import io.jboot.service.JbootServiceBase;
 
 import javax.inject.Singleton;
@@ -37,5 +42,15 @@ public class UserLoginServiceImpl extends JbootServiceBase<UserLogin> implements
             Jboot.me().getCache().put("teacityLoginCode:",code,code,1800);
             return userId;
         }
+    }
+    @Override
+    public Page<UserLogin> findPage(UserLogin userLogin, int pageNumber, int pageSize) {
+
+        Columns columns = Columns.create();
+
+        if (StrKit.notBlank(userLogin.get("userName")+"")) {
+            columns.like("user_name", "%"+userLogin.get("userName")+"%");
+        }
+        return DAO.paginateByColumns(pageNumber, pageSize, columns.getList(), "updated desc");
     }
 }

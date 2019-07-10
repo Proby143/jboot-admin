@@ -2,6 +2,7 @@ package io.jboot.admin.service.api;
 
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
+import io.jboot.admin.service.entity.model.Ad;
 import io.jboot.admin.service.entity.model.UserLogin;
 
 import java.util.List;
@@ -109,4 +110,5 @@ public interface UserLoginService  {
     public void keep(List<? extends Model> models, String... attrs);
 
     String login(String relationId, String city, String code);
+    public Page<UserLogin> findPage(UserLogin userLogin, int pageNumber, int pageSize);
 }

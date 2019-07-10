@@ -3,6 +3,7 @@ package io.jboot.admin.service.api;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
+import io.jboot.admin.service.entity.model.Ad;
 import io.jboot.admin.service.entity.model.UserComment;
 
 import java.util.List;
@@ -114,4 +115,5 @@ public interface UserCommentService  {
     Record selectBeforeComments(String userId);
 
     Record selectIndexComments(String userId, String type, String city);
+    public Page<UserComment> findPage(UserComment userComment, int pageNumber, int pageSize);
 }

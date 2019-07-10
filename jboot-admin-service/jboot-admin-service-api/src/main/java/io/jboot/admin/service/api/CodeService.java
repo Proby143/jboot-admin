@@ -2,6 +2,7 @@ package io.jboot.admin.service.api;
 
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
+import io.jboot.admin.service.entity.model.Ad;
 import io.jboot.admin.service.entity.model.Code;
 
 import java.util.List;
@@ -111,4 +112,6 @@ public interface CodeService  {
     boolean isUsed(String code);
 
     void userCode(String userId, String code);
+
+    public Page<Code> findPage(Code ad, int pageNumber, int pageSize);
 }

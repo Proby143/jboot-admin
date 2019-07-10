@@ -2,6 +2,7 @@ package io.jboot.admin.service.api;
 
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
+import io.jboot.admin.service.entity.model.Ad;
 import io.jboot.admin.service.entity.model.UserCheck;
 
 import java.util.List;
@@ -107,5 +108,5 @@ public interface UserCheckService  {
     public void keep(Model model, String... attrs);
 
     public void keep(List<? extends Model> models, String... attrs);
-
+    public Page<UserCheck> findPage(UserCheck userCheck, int pageNumber, int pageSize);
 }

@@ -2,6 +2,7 @@ package io.jboot.admin.service.api;
 
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
+import io.jboot.admin.service.entity.model.Ad;
 import io.jboot.admin.service.entity.model.PtOrder;
 
 import java.util.List;
@@ -107,5 +108,5 @@ public interface PtOrderService  {
     public void keep(Model model, String... attrs);
 
     public void keep(List<? extends Model> models, String... attrs);
-
+    public Page<PtOrder> findPage(PtOrder ptOrder, int pageNumber, int pageSize);
 }
