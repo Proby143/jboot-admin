@@ -1,13 +1,16 @@
 var websocket = null;
 		//判断当前浏览器是否支持WebSocket
 		if ('WebSocket' in window)
-			websocket = new WebSocket("ws://127.0.0.1:8888/websocket");
+//			websocket = new WebSocket("ws://127.0.0.1:8888/websocket");
+			websocket=new ReconnectingWebSocket("ws://127.0.0.1:8888/websocket", null, {debug: true, reconnectInterval: 3000});
 		else
 			alert('当前浏览器 Not support websocket')
 
 		//连接发生错误的回调方法
 		websocket.onerror = function() {
-			setMessageInnerHTML("WebSocket连接发生错误");
+//			setMessageInnerHTML("WebSocket连接发生错误");
+			setMessageInnerHTML("WebSocket连接发生错误,正在尝试重连...");
+			websocket=new ReconnectingWebSocket("ws://127.0.0.1:8888/websocket", null, {debug: true, reconnectInterval: 3000});
 		};
 
 		//连接成功建立的回调方法
@@ -39,7 +42,10 @@ var websocket = null;
 		function closeWebSocket() {
 			websocket.close();
 		}
-
+		//打开WebSocket连接
+        function openWebSocket() {
+			websocket.open();
+		}
 		//发送消息
 		function send() {
 			var message = document.getElementById('text').value;

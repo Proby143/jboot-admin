@@ -1,9 +1,6 @@
 package io.jboot.admin.controller.teacity;
 
-import javax.websocket.OnClose;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
+import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -49,6 +46,7 @@ public class WebSocket {
             try {
                 //当对象处于开启状态下执行以下
                 item.session.getBasicRemote().sendText(message);
+                System.out.println(message);
             } catch (IOException e) {
                 e.printStackTrace();
                 continue;
