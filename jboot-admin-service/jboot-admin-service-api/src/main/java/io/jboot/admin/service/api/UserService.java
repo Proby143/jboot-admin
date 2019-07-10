@@ -1,9 +1,11 @@
 package io.jboot.admin.service.api;
 
+import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import io.jboot.admin.service.entity.model.User;
+import io.jboot.db.model.Columns;
 
 import java.util.List;
 
@@ -126,4 +128,6 @@ public interface UserService  {
     List<Record> selectChatRecivers(List<String> stringList, String userId);
 
     String selectUserState(String userId);
+
+    public Page<User> findPage(User user, int pageNumber, int pageSize);
 }

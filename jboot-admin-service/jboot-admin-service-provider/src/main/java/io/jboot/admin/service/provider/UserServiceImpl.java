@@ -3,7 +3,9 @@ package io.jboot.admin.service.provider;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.jfinal.aop.Before;
+import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import io.jboot.Jboot;
@@ -13,6 +15,7 @@ import io.jboot.admin.service.entity.model.User;
 import io.jboot.admin.service.entity.model.UserCheck;
 import io.jboot.aop.annotation.Bean;
 import io.jboot.core.rpc.annotation.JbootrpcService;
+import io.jboot.db.model.Columns;
 import io.jboot.service.JbootServiceBase;
 import org.apache.commons.lang.StringUtils;
 
@@ -116,5 +119,14 @@ public class UserServiceImpl extends JbootServiceBase<User> implements UserServi
     public String selectUserState(String userId) {
         String state = Db.queryStr("select state from user_login where user_id = '"+userId+"'");
         return state;
+    }
+    @Override
+    public Page<User> findPage(User user, int pageNumber, int pageSize) {
+        Columns columns = Columns.create();
+
+        if (StrKit.notBlank(user.getUserName())) {
+            columns.like("user_name", "%"+user.getUserName()+"%");
+        }
+        return DAO.paginateByColumns(pageNumber, pageSize, columns.getList(), "updated desc");
     }
 }

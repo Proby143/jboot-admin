@@ -24,15 +24,16 @@
             , height: 'full-150'    //容器高度
             , cols: [[                  //标题栏
                 {checkbox: false, sort: true, fixed: true, space: true}
-                , {field: 'id', title: 'ID', width: 60}
-                , {field: 'name', title: '商品名称', width: 180}
-                , {field: 'prodDesc', title: '商品描述', width: 250}
-                , {field: 'totalNum', title: '库存数', width: 80}
-                , {field: 'orderedNum', title: '售出数', width: 80}
-                , {field: 'createDate', title: '创建时间', width: 150}
-                , {field: 'lastUpdAcct', title: '最后更新人', width: 100}
-                , {field: 'lastUpdTime', title: '最后更新时间', width: 150}
-                , {field: 'note', title: '备注', width: 150}
+                , {field: 'userId', title: '用户编号', width: 60}
+                , {field: 'userName', title: '姓名', width: 80}
+                , {field: 'age', title: '年龄', width: 60}
+                , {field: 'sex', title: '性别', width: 60}
+                , {field: 'occupation', title: '职业', width: 150}
+                , {field: 'frontPic', title: '头像', width: 120}
+                , {field: 'desc', title: '个人简介', width: 150}
+                , {field: 'city', title: '城市', width: 150}
+                , {field: 'creatred', title: '创建时间', width: 100}
+                , {field: 'updated', title: '更新时间', width: 100}
                 , {fixed: 'right', title: '操作', width: 120, align: 'center', toolbar: '#barOption'} //这里的toolbar值是模板元素的选择器
             ]]
             , url: '#(ctxPath)/teacity/user/tableData'
@@ -107,9 +108,9 @@
         <form id="searchForm" class="layui-form x-center" action="" >
             <div class="layui-form-pane">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">商品名称</label>
+                    <label class="layui-form-label">用户名称</label>
                     <div class="layui-input-inline">
-                        <input type="text" id="name" name="name" placeholder="商品名称" class="layui-input"/>
+                        <input type="text" id="name" name="name" placeholder="用户名称" class="layui-input"/>
                     </div>
                     <div class="layui-input-inline" style="width : 80px">
                         <button class="layui-btn"  lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
@@ -118,14 +119,14 @@
             </div>
         </form>
         <hr>
-        <div class="layui-row">
+        <!--<div class="layui-row">
             <div class="layui-btn-group">
                 #shiroHasPermission('/teacity/user/add')
                 <button id="add" class="layui-btn layui-btn-small">新增商品</button>
                 #end
             </div>
             <table id="dateTable" lay-filter="dateTable"></table>
-        </div>
+        </div>-->
     </div>
 
 <script type="text/html" id="barOption">
