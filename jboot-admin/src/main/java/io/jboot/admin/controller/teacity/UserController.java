@@ -60,27 +60,27 @@ public class UserController extends BaseController {
     /**
      * 保存提交
      */
-    @NotNullPara({"product.name", "product.prodDesc", "product.totalNum"})
-    public void postAdd() {
-        User user = getBean(User.class, "");
-
-        if (!userService.save(user)) {
-            throw new BusinessException("保存失败");
-        }
-
-        renderJson(RestResult.buildSuccess());
-    }
+//    @NotNullPara({"product.name", "product.prodDesc", "product.totalNum"})
+//    public void postAdd() {
+//        User user = getBean(User.class, "");
+//
+//        if (!userService.save(user)) {
+//            throw new BusinessException("保存失败");
+//        }
+//
+//        renderJson(RestResult.buildSuccess());
+//    }
 
     /**
      * update
      */
-    @NotNullPara({"id"})
-    public void update() {
-        Long id = getParaToLong("userId");
-        User user = userService.findById(id);
-
-        setAttr("user", user).render("update.html");
-    }
+//    @NotNullPara({"id"})
+//    public void update() {
+//        Long id = getParaToLong("userId");
+//        User user = userService.findById(id);
+//
+//        setAttr("user", user).render("update.html");
+//    }
 
     /**
      * 修改提交
@@ -92,16 +92,9 @@ public class UserController extends BaseController {
         if (userService.findById(user.getUserId()) == null) {
             throw new BusinessException("用户不存在");
         }
-
-        user.setUserName(AuthUtils.getLoginUser().getName());
-        user.setAge(user.getAge());
-        user.setCity(user.getCity());
-        user.setSex(user.getSex());
-
         if (!userService.update(user)) {
             throw new BusinessException("修改失败");
         }
-
         renderJson(RestResult.buildSuccess());
     }
 

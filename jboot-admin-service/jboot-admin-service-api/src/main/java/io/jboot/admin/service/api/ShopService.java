@@ -4,6 +4,7 @@ import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import io.jboot.admin.service.entity.model.Shop;
+import io.jboot.admin.service.entity.model.User;
 
 import java.util.List;
 
@@ -110,4 +111,6 @@ public interface ShopService  {
     public void keep(List<? extends Model> models, String... attrs);
 
     List<Record> selectCityShop(String city);
+
+    public Page<Shop> findPage(Shop shop, int pageNumber, int pageSize);
 }
