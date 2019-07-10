@@ -31,7 +31,7 @@
                 , {field: 'updated', title: '更新时间', width: 80}
                 , {fixed: 'right', title: '操作', width: 120, align: 'center', toolbar: '#barOption'} //这里的toolbar值是模板元素的选择器
             ]]
-            , url: '#(ctxPath)/teacity/shop/tableData'
+            , url: '#(ctxPath)/teacity/check/tableData'
             , method: 'get'
             , request: {
                 pageName: 'pageNumber' //页码的参数名称，默认：page
@@ -51,7 +51,7 @@
                 layer.confirm('真的删除行么', function(index){
                     util.sendAjax ({
                         type: 'POST',
-                        url: '#(ctxPath)/teacity/shop/delete',
+                        url: '#(ctxPath)/teacity/check/delete',
                         data: {id : data.id},
                         loadFlag: true,
                         success : function(data){
@@ -64,28 +64,28 @@
                     })
                 });
             } else if(obj.event === 'edit') {
-                pop_show('编辑数据','#(ctxPath)/teacity/shop/update?id=' + data.id,'','', function(){
+                pop_show('编辑数据','#(ctxPath)/teacity/check/update?id=' + data.id,'','', function(){
                     reloadTableQuery();
                 });
             }
         });
 
         $("#add").click(function(){
-            pop_show('添加数据','#(ctxPath)/teacity/shop/add','','', function(){
+            pop_show('添加数据','#(ctxPath)/teacity/check/add','','', function(){
                 reloadTableQuery();
             });
         });
 
         reloadTableQuery = function () {
             table.reload('dateTable', {
-                url: '#(ctxPath)/teacity/shop/tableData'
+                url: '#(ctxPath)/teacity/check/tableData'
                 ,where: {name: $('#name').val()} //设定异步数据接口的额外参数
             });
         }
 
         reloadTable = function (name) {
             table.reload('dateTable', {
-                url: '#(ctxPath)/teacity/shop/tableData'
+                url: '#(ctxPath)/teacity/check/tableData'
                 ,where: {name: name} //设定异步数据接口的额外参数
             });
         }
@@ -116,7 +116,7 @@
         <hr>
         <div class="layui-row">
             <div class="layui-btn-group">
-                #shiroHasPermission('/teacity/shop/add')
+                #shiroHasPermission('/teacity/check/add')
                 <button id="add" class="layui-btn layui-btn-small">新增商品</button>
                 #end
             </div>
@@ -125,11 +125,11 @@
     </div>
 
 <script type="text/html" id="barOption">
-    #shiroHasPermission('/teacity/shop/update')
+    #shiroHasPermission('/teacity/check/update')
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     #end
 
-    #shiroHasPermission('/teacity/shop/delete')
+    #shiroHasPermission('/teacity/check/delete')
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     #end
 </script>

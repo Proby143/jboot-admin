@@ -48,9 +48,9 @@ public class UserLoginServiceImpl extends JbootServiceBase<UserLogin> implements
 
         Columns columns = Columns.create();
 
-        if (StrKit.notBlank(userLogin.get("userName")+"")) {
-            columns.like("user_name", "%"+userLogin.get("userName")+"%");
-        }
+//        if (StrKit.notBlank(userLogin.get("userName")+"")) {
+//            columns.like("user_name", "%"+userLogin.get("userName")+"%");
+//        }
         return DAO.paginateByColumns(pageNumber, pageSize, columns.getList(), "updated desc");
     }
 }

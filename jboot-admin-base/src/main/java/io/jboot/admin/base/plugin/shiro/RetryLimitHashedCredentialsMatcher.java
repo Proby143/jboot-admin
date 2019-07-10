@@ -48,7 +48,7 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 			SimpleCredentialsMatcher simpleMatcher = new SimpleCredentialsMatcher();
 			matches = simpleMatcher.doCredentialsMatch(token, info);
 		} else {
-			throw new BusinessException("not support login type :" + token.getLoginType());
+			throw new BusinessException("not support userlogin type :" + token.getLoginType());
 		}
 		
 		if (matches) {

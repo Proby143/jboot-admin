@@ -20,6 +20,9 @@ import io.jboot.web.controller.annotation.RequestMapping;
 public class RecordController extends BaseController {
     @JbootrpcService(group = ServiceConst.SERVICE_SYSTEM, version = ServiceConst.VERSION_1_0)
     ReadRecordService readRecordService;
+    public void index() {
+        render("main.html");
+    }
     /**
      * 表格数据
      */
