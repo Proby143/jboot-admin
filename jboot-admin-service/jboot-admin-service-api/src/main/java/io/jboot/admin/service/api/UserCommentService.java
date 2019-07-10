@@ -2,6 +2,7 @@ package io.jboot.admin.service.api;
 
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.Record;
 import io.jboot.admin.service.entity.model.UserComment;
 
 import java.util.List;
@@ -108,4 +109,9 @@ public interface UserCommentService  {
 
     public void keep(List<? extends Model> models, String... attrs);
 
+    boolean insertComment(String content, String url, String userId, String shopId, String type, String age, String reciveId, String cost, String code);
+
+    Record selectBeforeComments(String userId);
+
+    Record selectIndexComments(String userId, String type, String city);
 }

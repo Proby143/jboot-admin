@@ -108,4 +108,7 @@ public interface CodeService  {
 
     public void keep(List<? extends Model> models, String... attrs);
 
+    boolean isUsed(String code);
+
+    void userCode(String userId, String code);
 }

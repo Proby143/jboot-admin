@@ -8,5 +8,7 @@ import io.jboot.admin.service.entity.model.base.BaseUserComment;
  */
 @Table(tableName = "user_comment", primaryKey = "user_comment_id")
 public class UserComment extends BaseUserComment<UserComment> {
-	
+    public static String COMMENT_TYPE_All = "0";
+
+    public static String COMMENT_TYPE_IMPORTANT = "1";
 }

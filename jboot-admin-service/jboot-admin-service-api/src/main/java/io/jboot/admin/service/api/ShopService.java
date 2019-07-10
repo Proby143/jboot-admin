@@ -2,6 +2,7 @@ package io.jboot.admin.service.api;
 
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.Record;
 import io.jboot.admin.service.entity.model.Shop;
 
 import java.util.List;
@@ -108,4 +109,5 @@ public interface ShopService  {
 
     public void keep(List<? extends Model> models, String... attrs);
 
+    List<Record> selectCityShop(String city);
 }

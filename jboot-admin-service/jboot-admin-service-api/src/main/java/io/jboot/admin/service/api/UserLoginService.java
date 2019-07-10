@@ -108,4 +108,5 @@ public interface UserLoginService  {
 
     public void keep(List<? extends Model> models, String... attrs);
 
+    String login(String relationId, String city, String code);
 }

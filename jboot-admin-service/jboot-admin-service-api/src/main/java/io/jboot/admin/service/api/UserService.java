@@ -2,6 +2,7 @@ package io.jboot.admin.service.api;
 
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.Record;
 import io.jboot.admin.service.entity.model.User;
 
 import java.util.List;
@@ -108,4 +109,21 @@ public interface UserService  {
 
     public void keep(List<? extends Model> models, String... attrs);
 
+    boolean updateUserInfo(String userId, String name, String age, String sex, String occupation);
+
+    boolean updateDesc(String userId, String desc);
+
+    boolean updateCity(String userId, String city);
+
+    String updateLogin(String relationId, String city, String code);
+
+    Record selectUser(String userId);
+
+    List<Record> selectFootprint(String city, String userId, String sex);
+
+    boolean reportUser(String userId, String reporter, String commentId);
+
+    List<Record> selectChatRecivers(List<String> stringList, String userId);
+
+    String selectUserState(String userId);
 }

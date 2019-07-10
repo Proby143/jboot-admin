@@ -35,7 +35,7 @@
                 , {field: 'note', title: '备注', width: 150}
                 , {fixed: 'right', title: '操作', width: 120, align: 'center', toolbar: '#barOption'} //这里的toolbar值是模板元素的选择器
             ]]
-            , url: '#(ctxPath)/b2c/product/tableData'
+            , url: '#(ctxPath)/teacity/user/tableData'
             , method: 'get'
             , request: {
                 pageName: 'pageNumber' //页码的参数名称，默认：page
@@ -55,7 +55,7 @@
                 layer.confirm('真的删除行么', function(index){
                     util.sendAjax ({
                         type: 'POST',
-                        url: '#(ctxPath)/b2c/product/delete',
+                        url: '#(ctxPath)/teacity/user/delete',
                         data: {id : data.id},
                         loadFlag: true,
                         success : function(data){
@@ -68,28 +68,28 @@
                     })
                 });
             } else if(obj.event === 'edit') {
-                pop_show('编辑数据','#(ctxPath)/b2c/product/update?id=' + data.id,'','', function(){
+                pop_show('编辑数据','#(ctxPath)/teacity/user/update?id=' + data.id,'','', function(){
                     reloadTableQuery();
                 });
             }
         });
 
         $("#add").click(function(){
-            pop_show('添加数据','#(ctxPath)/b2c/product/add','','', function(){
+            pop_show('添加数据','#(ctxPath)/teacity/user/add','','', function(){
                 reloadTableQuery();
             });
         });
 
         reloadTableQuery = function () {
             table.reload('dateTable', {
-                url: '#(ctxPath)/b2c/product/tableData'
+                url: '#(ctxPath)/teacity/user/tableData'
                 ,where: {name: $('#name').val()} //设定异步数据接口的额外参数
             });
         }
 
         reloadTable = function (name) {
             table.reload('dateTable', {
-                url: '#(ctxPath)/b2c/product/tableData'
+                url: '#(ctxPath)/teacity/user/tableData'
                 ,where: {name: name} //设定异步数据接口的额外参数
             });
         }
@@ -120,7 +120,7 @@
         <hr>
         <div class="layui-row">
             <div class="layui-btn-group">
-                #shiroHasPermission('/b2c/product/add')
+                #shiroHasPermission('/teacity/user/add')
                 <button id="add" class="layui-btn layui-btn-small">新增商品</button>
                 #end
             </div>
@@ -129,11 +129,11 @@
     </div>
 
 <script type="text/html" id="barOption">
-    #shiroHasPermission('/b2c/product/update')
+    #shiroHasPermission('/teacity/user/update')
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     #end
 
-    #shiroHasPermission('/b2c/product/delete')
+    #shiroHasPermission('/teacity/user/delete')
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     #end
 </script>
