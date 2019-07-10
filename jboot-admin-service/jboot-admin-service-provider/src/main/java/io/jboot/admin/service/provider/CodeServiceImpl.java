@@ -37,9 +37,9 @@ public class CodeServiceImpl extends JbootServiceBase<Code> implements CodeServi
 
         Columns columns = Columns.create();
 
-        if (StrKit.notBlank(code.get("userName")+"")) {
-            columns.like("user_name", "%"+code.get("userName")+"%");
-        }
+//        if (StrKit.notBlank(code.get("userName")+"")) {
+//            columns.like("user_name", "%"+code.get("userName")+"%");
+//        }
         return DAO.paginateByColumns(pageNumber, pageSize, columns.getList(), "updated desc");
     }
 }

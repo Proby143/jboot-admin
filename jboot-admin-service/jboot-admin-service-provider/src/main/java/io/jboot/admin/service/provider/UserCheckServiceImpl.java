@@ -23,9 +23,9 @@ public class UserCheckServiceImpl extends JbootServiceBase<UserCheck> implements
 
         Columns columns = Columns.create();
 
-        if (StrKit.notBlank(userCheck.get("userName")+"")) {
-            columns.like("user_name", "%"+userCheck.get("userName")+"%");
-        }
+//        if (StrKit.notBlank(userCheck.get("userName")+"")) {
+//            columns.like("user_name", "%"+userCheck.get("userName")+"%");
+//        }
         return DAO.paginateByColumns(pageNumber, pageSize, columns.getList(), "updated desc");
     }
 }

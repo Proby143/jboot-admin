@@ -31,7 +31,7 @@ public class ShopServiceImpl extends JbootServiceBase<Shop> implements ShopServi
         Columns columns = Columns.create();
 
         if (StrKit.notBlank(shop.getShopName())) {
-            columns.like("user_name", "%"+shop.getShopName()+"%");
+            columns.like("shop_name", "%"+shop.getShopName()+"%");
         }
         return DAO.paginateByColumns(pageNumber, pageSize, columns.getList(), "updated desc");
     }

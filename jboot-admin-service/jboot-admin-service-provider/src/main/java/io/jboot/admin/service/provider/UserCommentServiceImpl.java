@@ -107,9 +107,9 @@ public class UserCommentServiceImpl extends JbootServiceBase<UserComment> implem
 
         Columns columns = Columns.create();
 
-        if (StrKit.notBlank(userComment.get("userName")+"")) {
-            columns.like("user_name", "%"+userComment.get("userName")+"%");
-        }
+//        if (StrKit.notBlank(userComment.get("userName")+"")) {
+//            columns.like("user_name", "%"+userComment.get("userName")+"%");
+//        }
         return DAO.paginateByColumns(pageNumber, pageSize, columns.getList(), "updated desc");
     }
 }

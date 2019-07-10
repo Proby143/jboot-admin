@@ -21,9 +21,9 @@ public class AdServiceImpl extends JbootServiceBase<Ad> implements AdService {
 
         Columns columns = Columns.create();
 
-        if (StrKit.notBlank(ad.get("userName")+"")) {
-            columns.like("user_name", "%"+ad.get("userName")+"%");
-        }
+//        if (StrKit.notBlank(ad.get("userName")+"")) {
+//            columns.like("user_name", "%"+ad.get("userName")+"%");
+//        }
         return DAO.paginateByColumns(pageNumber, pageSize, columns.getList(), "updated desc");
     }
 }

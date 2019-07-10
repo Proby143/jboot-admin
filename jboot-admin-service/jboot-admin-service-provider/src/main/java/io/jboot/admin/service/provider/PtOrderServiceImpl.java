@@ -19,9 +19,9 @@ public class PtOrderServiceImpl extends JbootServiceBase<PtOrder> implements PtO
 
         Columns columns = Columns.create();
 
-        if (StrKit.notBlank(ptOrder.get("orderId")+"")) {
-            columns.like("user_name", "%"+ptOrder.get("orderId")+"%");
-        }
+//        if (StrKit.notBlank(ptOrder.get("orderId")+"")) {
+//            columns.like("user_name", "%"+ptOrder.get("orderId")+"%");
+//        }
         return DAO.paginateByColumns(pageNumber, pageSize, columns.getList(), "updated desc");
     }
 }
