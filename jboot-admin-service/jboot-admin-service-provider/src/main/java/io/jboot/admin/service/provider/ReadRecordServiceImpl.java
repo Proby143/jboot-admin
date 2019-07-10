@@ -21,16 +21,16 @@ public class ReadRecordServiceImpl extends JbootServiceBase<ReadRecord> implemen
 
     @Override
     public Page<ReadRecord> findPage(ReadRecord readRecord, int pageNumber, int pageSize) {
-        Record record = new UserServiceImpl().selectUser(readRecord.getUserId());
-        if(readRecord==null){
-            throw new BusinessException("没有此用户");
-        }
+//        Record record = new UserServiceImpl().selectUser(readRecord.getUserId());
+//        if(readRecord==null){
+//            throw new BusinessException("没有此用户");
+//        }
 
         Columns columns = Columns.create();
 
-        if (StrKit.notBlank(record.get("userName")+"")) {
-            columns.like("user_name", "%"+record.get("userName")+"%");
-        }
+//        if (StrKit.notBlank(record.get("userName")+"")) {
+//            columns.like("user_name", "%"+record.get("userName")+"%");
+//        }
         return DAO.paginateByColumns(pageNumber, pageSize, columns.getList(), "updated desc");
     }
 }
