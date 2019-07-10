@@ -39,7 +39,7 @@ public class MainController extends BaseController {
         if (SecurityUtils.getSubject().isAuthenticated()) {
             redirect("/");
         } else {
-            render("userlogin.html");
+            render("login.html");
         }
     }
 
@@ -94,7 +94,7 @@ public class MainController extends BaseController {
         if (SecurityUtils.getSubject().isAuthenticated()) {
             SecurityUtils.getSubject().logout();
         }
-        render("userlogin.html");
+        render("login.html");
     }
 
     public void welcome() {
